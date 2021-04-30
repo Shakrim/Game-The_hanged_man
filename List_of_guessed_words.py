@@ -1,0 +1,1 @@
+list_of_words = ["sex", "sibling", "cholesterol", "monday","lesbian","airplane"]
