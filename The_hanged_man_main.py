@@ -22,23 +22,27 @@ def actual_game_Status(lives:int, puzzle:list, game_on:bool) -> None:
     elif not lives:
         print("You lost!")
 
+def letter_check(guessed_word, puzzle, guessing):
+    for index, letter in enumerate(guessed_word):
+        if letter == guessing:
+            puzzle[index] = letter
+    return False if "_" not in puzzle else True
+
+
 
 lives = 7
 game_on = True
 
 guessed_word, puzzle = puzzle_generation()
 
-while game_on and lives > 0:
+while game_on and not lives:
     actual_game_Status(lives, puzzle, game_on)
     guessing = input("Enter letter or guessed word: ").lower()
 
     if guessed_word == guessing:
         game_on = False
     elif len(guessing) == 1 and guessing in guessed_word:
-        for index, letter in enumerate(guessed_word):
-            if letter == guessing:
-                puzzle[index] = letter
-        game_on = False if "_" not in puzzle else True
+        game_on = letter_check(guessed_word, puzzle, guessing)
     else:
         lives -= 1
 
