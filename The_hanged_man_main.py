@@ -7,10 +7,12 @@ guessed_word = choice(["sex", "sibling", "cholesterol", "monday","lesbian"])
 puzzle = len(guessed_word) * ["_"]
 life = 7
 game_on = True
+
+
 while game_on and life > 0:
     os.system("cls")
     print(The_hanged_man_scheme.hangman[7 - life])
-    print(f"Puzzle: {puzzle} Lifes left: {life}")
+    print(f"Puzzle: {' '.join(puzzle)} Lifes left: {life}")
     guessing = input("Enter letter or guessed word: ").lower()
     if guessed_word == guessing:
         game_on = False
