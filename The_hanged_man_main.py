@@ -1,24 +1,32 @@
 #!/usr/bin/python3
 import os
 from random import choice
-import The_hanged_man_scheme
 
-def actual_game_Status(lives:int, puzzle:list, game_on:bool)->None:
+from The_hanged_man_scheme import hangman
+from List_of_guessed_words import list_of_words
+
+
+def puzzle_generation() -> str:
+    guessed_word = choice(list_of_words)
+    puzzle = len(guessed_word) * ["_"]
+    return guessed_word, puzzle
+
+
+def actual_game_Status(lives:int, puzzle:list, game_on:bool) -> None:
     os.system("cls")
     status = f"Puzzle: {' '.join(puzzle)} Lives left: {lives}"
-    print(status, The_hanged_man_scheme.hangman[7 - lives], sep="\n")
+    print(status, hangman[7 - lives], sep="\n")
     if not game_on and lives:
         print("You won!")
 
     elif not lives:
         print("You lost!")
 
-guessed_word = choice(["sex", "sibling", "cholesterol", "monday","lesbian"])
-puzzle = len(guessed_word) * ["_"]
+
 lives = 7
 game_on = True
 
-
+guessed_word, puzzle = puzzle_generation()
 
 while game_on and lives > 0:
     actual_game_Status(lives, puzzle, game_on)
